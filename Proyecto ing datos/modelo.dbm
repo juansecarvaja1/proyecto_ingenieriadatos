@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" last-position="0,18" last-zoom="0.55" max-obj-count="7"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Pelicula" layers="0" collapse-mode="1" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1000" y="600"/>
+	<column name="ID" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="Title">
+		<type name="character" length="0"/>
+	</column>
+	<column name="fecha_lanzamiento">
+		<type name="date" length="0"/>
+	</column>
+	<column name="tiempo_ejecucion">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="adulto">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="ganancia">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="estado">
+		<type name="character" length="0"/>
+	</column>
+	<constraint name="Pelicula_pk" type="pk-constr" table="public.&quot;Pelicula&quot;">
+		<columns names="ID" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="op_publica" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1000" y="260"/>
+	<column name="voto_promedio">
+		<type name="float" length="0"/>
+	</column>
+	<column name="recuento_votos">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="popularidad">
+		<type name="float" length="0"/>
+	</column>
+	<column name="id_pelicula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="op_publica_pk" type="pk-constr" table="public.op_publica">
+		<columns names="id_pelicula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="costos" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460" y="300"/>
+	<column name="ganancia">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="compa;ia de produccion">
+		<type name="character" length="0"/>
+	</column>
+	<column name="id_compa;ia" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="costos_pk" type="pk-constr" table="public.costos">
+		<columns names="id_compa;ia" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="info_especial" layers="0" collapse-mode="2" max-obj-count="10" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1460" y="520"/>
+	<column name="pagina_pricipal">
+		<type name="character" length="0"/>
+	</column>
+	<column name="imbd_id">
+		<type name="character" length="0"/>
+	</column>
+	<column name="idioma_original">
+		<type name="character" length="0"/>
+	</column>
+	<column name="id_pelicula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="Presupuesto">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="titulo_original">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="ruta_telon_fondo">
+		<type name="character" length="0"/>
+	</column>
+	<column name="ruta_poster">
+		<type name="character" length="0"/>
+	</column>
+	<constraint name="info_especial_pk" type="pk-constr" table="public.info_especial">
+		<columns names="id_pelicula" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="ID_Pelicula" index="4"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Pelicula_fk" index="0"/>
+		<object name="info_especial_uq" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="op_publica_has_one_Pelicula" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#6230b4"
+	 src-table="public.&quot;Pelicula&quot;"
+	 dst-table="public.op_publica"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="info_especial_has_one_Pelicula" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#18d8ec"
+	 src-table="public.&quot;Pelicula&quot;"
+	 dst-table="public.info_especial"
+	 src-required="true" dst-required="false"/>
+
+<table name="Genero" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1020" y="900"/>
+	<column name="id_pelicula">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="genero">
+		<type name="smallint" length="0"/>
+	</column>
+</table>
+
+<relationship name="Pelicula_has_many_Genero" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#2a5591"
+	 src-table="public.&quot;Pelicula&quot;"
+	 dst-table="public.&quot;Genero&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Lenguajes_hablados" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1460" y="880"/>
+	<column name="id_pelicula">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="lenguaje">
+		<type name="smallint" length="0"/>
+	</column>
+</table>
+
+<relationship name="info_especial_has_many_Lenguajes_hablados" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#c315db"
+	 src-table="public.info_especial"
+	 dst-table="public.&quot;Lenguajes_hablados&quot;"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>
